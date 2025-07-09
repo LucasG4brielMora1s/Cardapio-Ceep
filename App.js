@@ -1,43 +1,26 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet}
-from 'react-native';
 
-export default function ScedondaryScreen({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}> Escolha sua Delícia! </Text>
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-      <View style={styles.buttonContainer}>
-        <Button title='Café' onPress={() => navigation.navigate('Cafe')} color='#a0522d'/>
-      </View>
+import HomeScreen from './screen/HomeScrem';
+import SecondaryScreen from './screen/SecondaryScrem';
+import CafeScreen from './screen/CafeScrem';
+import BoloScreen from './screen/BoloScrem';
+import PaoScreen from './screen/PaoScrem';
 
-      <View style={styles.buttonContainer}>
-        <Button title='Bolo de Chocolate' onPress={() => navigation.navigate('Bolo')} color='#8b4513'/>
-      </View>
+const Stack = createStackNavigator();
 
-      <View style={styles.buttonContainer}>
-      <Button title='Pão Caseiro' onPress={() => navigation.navigate ('Pao')} color='#deb887'/>
-      </View>
-
-    </View>
-  )
+export default function App() {
+  return(
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Home'>
+        <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Bem-Vindo!' }}/>
+        <Stack.Screen name='Secondary' component={SecondaryScreen} options={{ title: 'Opções Deliciosas' }}/>
+        <Stack.Screen name='Cafe' component={CafeScreen} options={{ title: 'Nosso Café' }}/>
+        <Stack.Screen name='Bolo' component={BoloScreen} options={{ title: 'Bolo de Chocolate' }}/>
+        <Stack.Screen name='Pao' component={PaoScreen} options={{ title: 'Pão Caseiro' }}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fffafa',
-  },
-  title: {
-    fontSize: 26,
-    fontWeight: 'bold',
-    marginBottom: 40,
-    color: '#444',    
-  },
-  buttonContainer: {
-    marginVertical: 10,
-    width: '60%',
-  },
-});
